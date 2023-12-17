@@ -8,10 +8,10 @@ from oauthlib.oauth2 import InvalidRequestError
 import secrets
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'  # Use a proper database in production
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db' 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # Suppress a warning about tracking modifications
 app.config['SECRET_KEY'] = secrets.token_urlsafe(32)  # Change this to a strong secret key
-app.config['OAUTH2_PROVIDER_TOKEN_EXPIRES_IN'] = 1800  # Token expires in 1800 seconds (30 minutes)
+app.config['OAUTH2_PROVIDER_TOKEN_EXPIRES_IN'] = 180  # Token expires in 180 seconds (3 minutes)
 db = SQLAlchemy(app)
 
 limiter = Limiter(
@@ -191,8 +191,12 @@ def validate_access_token(token):
 def index():
     return jsonify({"message": "Welcome to the API"})
 
+#To connect the frontend
+#@app.route('/')
+#def index():
+#    return render_template('index.html')
+
 if __name__ == '__main__':
-    app.debug=True
     with app.app_context():
         db.create_all()
-    app.run(port=7776)
+    app.run(debug=True)
