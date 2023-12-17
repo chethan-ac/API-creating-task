@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+<form id="userForm">
+    <label for="f_name">First Name:</label>
+    <input type="text" id="f_name" name="f_name" required>
+    <br>
+    <label for="l_name">Last Name:</label>
+    <input type="text" id="l_name" name="l_name" required>
+    <br>
+    <label for="email_id">Email ID:</label>
+    <input type="email" id="email_id" name="email_id" required>
+    <br>
+    <label for="phone_number">Phone Number:</label>
+    <input type="text" id="phone_number" name="phone_number" required>
+    <br>
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" required>
+    <br>
+    <button type="button" onclick="insertUser()">Add User</button>
+</form>
+
+<table id="userTable" border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email ID</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>Created Date</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script>
+    let currentIndex = 0;
+
+    function insertUser() {
+        // Implement logic to insert user using API
+        // Example: $.post("/insert_user", { data: "user_data" }, function(response) { console.log(response); });
+    }
+
+    function listUsers() {
+        // Implement logic to list users using API
+        // Example: $.get("/list_users", { page: 1 }, function(response) { console.log(response); });
+    }
+
+    function renderUser(user) {
+        // Implement logic to render user in the table
+        // Example: $("tbody").append(<tr><td>${user.id}</td>...</tr>);
+    }
+
+    function navigateUsers(direction) {
+        // Implement logic to navigate users using arrow keys
+        // Example: currentIndex += direction; renderUser(users[currentIndex]);
+    }
+
+    $(document).ready(function() {
+        listUsers();
+
+        $(document).keydown(function(e) {
+            if (e.key === "ArrowUp") {
+                navigateUsers(-1);
+            } else if (e.key === "ArrowDown") {
+                navigateUsers(1);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
