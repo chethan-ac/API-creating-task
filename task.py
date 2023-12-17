@@ -192,6 +192,7 @@ def index():
     return jsonify({"message": "Welcome to the API"})
 
 if __name__ == '__main__':
+    app.debug=True
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run(port=7776)
